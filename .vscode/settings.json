@@ -1,5 +1,6 @@
 {
   "conventionalCommits.scopes": [
+    "util",
     "fixnum",
     "range"
   ],
