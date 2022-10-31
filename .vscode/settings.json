@@ -1,5 +1,9 @@
 {
   "conventionalCommits.scopes": [
+    "fixnum",
     "range"
+  ],
+  "cSpell.words": [
+    "fixnum"
   ]
 }
