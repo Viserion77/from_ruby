@@ -37,8 +37,9 @@ describe('Range', () => {
   });
 
   describe('of dates', () => {
-    const returnDateSum = (start: Date, date: number) => new Date(start.getTime() + date);
-    const startDate = new Date(2077, 7, 7)
+    const returnDateSum = (start: Date, date: number) =>
+      new Date(start.getTime() + date);
+    const startDate = new Date(2077, 7, 7);
     const endDate = returnDateSum(startDate, 7);
     const range = new Range<Date>(startDate, endDate);
 
@@ -66,7 +67,7 @@ describe('Range', () => {
     });
 
     it('should return the string representation of the range', () => {
-      expect(range.toString()).toEqual('Sat Aug 07 2077 00:00:00 GMT+0000 (Coordinated Universal Time)..Sat Aug 07 2077 00:00:00 GMT+0000 (Coordinated Universal Time)');
+      expect(range.toString()).toEqual(`${startDate}..${endDate}`);
     });
 
     it('should return the count of the range', () => {
@@ -81,11 +82,15 @@ describe('Range', () => {
     });
 
     it('should throw an error when trying init a range with a start greater than the end', () => {
-      expect(() => new Range<number>(7, 1)).toThrowError('Start must be less than or equal to end');
+      expect(() => new Range<number>(7, 1)).toThrowError(
+        'Start must be less than or equal to end'
+      );
     });
 
     it('should throw an error when trying init a range with a start type not supported', () => {
-      expect(() => new Range<string>('a', 'b')).toThrowError('Start type is not supported');
+      expect(() => new Range<string>('a', 'b')).toThrowError(
+        'Start type is not supported'
+      );
     });
   });
 });
