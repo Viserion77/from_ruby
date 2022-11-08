@@ -1,7 +1,10 @@
 {
   "conventionalCommits.scopes": [
+    "array",
     "fixnum",
+    "object",
     "range",
+    "string",
     "time",
     "util"
   ],

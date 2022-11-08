@@ -1,20 +1,13 @@
+import array from './array';
+import object from './object';
+import string from './string';
 import fixnum from './fixnum';
 import time from './time';
 
-export const setBackgroundCompatibility = () => {
-  // @ts-ignore
-  Number.prototype.days = function () {
-    return fixnum.day(this);
-  };
-
-  // @ts-ignore
-  Date.prototype.beginningOfDay = function () {
-    return time.beginningOfDay(this);
-  };
-
-  Object.assign(Date, {
-    yesterday() {
-      return time.yesterday();
-    },
-  });
+export const setFullBackgroundCompatibility = () => {
+  time.setBackgroundCompatibility();
+  array.setBackgroundCompatibility();
+  object.setBackgroundCompatibility();
+  fixnum.setBackgroundCompatibility();
+  string.setBackgroundCompatibility();
 };

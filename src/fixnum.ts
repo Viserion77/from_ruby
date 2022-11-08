@@ -1,4 +1,4 @@
-const day = (value: Number) => {
+const days = (value: Number) => {
   const numberDays = parseInt(value.toString());
   const date = new Date(0);
 
@@ -6,4 +6,14 @@ const day = (value: Number) => {
   return date;
 };
 
-export default {day};
+const setBackgroundCompatibility = () => {
+  Number.prototype.days = function () {
+    return days(this);
+  };
+
+  Number.prototype.day = function () {
+    return days(this);
+  };
+};
+
+export default {days, setBackgroundCompatibility};

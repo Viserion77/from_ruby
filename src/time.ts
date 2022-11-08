@@ -10,4 +10,16 @@ const yesterday = () => {
   return date;
 };
 
-export default {beginningOfDay, yesterday};
+const setBackgroundCompatibility = () => {
+  Date.prototype.beginningOfDay = function () {
+    return beginningOfDay(this);
+  };
+
+  Object.assign(Date, {
+    yesterday() {
+      return yesterday();
+    },
+  });
+};
+
+export default {beginningOfDay, yesterday, setBackgroundCompatibility};

@@ -16,4 +16,20 @@ describe('time', () => {
       expect(result).toEqual(expected);
     });
   });
+
+  describe('setBackgroundCompatibility', () => {
+    it('should add beginningOfDay to the Date prototype', () => {
+      time.setBackgroundCompatibility();
+
+      expect(new Date(2019, 0, 1, 12, 0, 0).beginningOfDay()).toEqual(
+        new Date(2019, 0, 1, 0, 0, 0)
+      );
+    });
+
+    it('should add yesterday to the Date prototype', () => {
+      time.setBackgroundCompatibility();
+
+      expect(Date.yesterday().getDate()).toEqual(new Date().getDate() - 1);
+    });
+  });
 });

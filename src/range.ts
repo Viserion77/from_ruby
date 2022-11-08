@@ -10,21 +10,6 @@ export default class Range<rangeType> {
     this.totalSum = 0;
     this.rangeCount = 0;
   }
-  private validateParameters() {
-    if (!this.supportedTypes().some(type => type(this.start))) {
-      throw new Error('Start type is not supported');
-    }
-
-    if (this.start > this.end) {
-      throw new Error('Start must be less than or equal to end');
-    }
-  }
-  private supportedTypes(): Function[] {
-    return [
-      (value: rangeType) => typeof value === 'number',
-      (value: rangeType) => value instanceof Date,
-    ];
-  }
 
   public contains(value: rangeType): boolean {
     return this.start <= value && value <= this.end;
@@ -40,30 +25,6 @@ export default class Range<rangeType> {
     }
 
     return this.rangeArray;
-  }
-
-  private toArrayNumber(): rangeType[] {
-    const array: rangeType[] = [];
-    const start = this.start as unknown as number;
-    const end = this.end as unknown as number;
-
-    for (let i = start; i <= end; i++) {
-      array.push(i as unknown as rangeType);
-    }
-    return array;
-  }
-
-  private toArrayDate(): rangeType[] {
-    const start = (this.start as unknown as Date).getTime();
-    const end = (this.end as unknown as Date).getTime();
-
-    const array: rangeType[] = [];
-
-    for (let i = start; i <= end; i += 1) {
-      array.push(new Date(i) as unknown as rangeType);
-    }
-
-    return array;
   }
 
   public toString(): string {
@@ -88,5 +49,46 @@ export default class Range<rangeType> {
 
     this.rangeCount = this.toArray().length;
     return this.rangeCount;
+  }
+
+  private validateParameters() {
+    if (!this.supportedTypes().some(type => type(this.start))) {
+      throw new Error('Start type is not supported');
+    }
+
+    if (this.start > this.end) {
+      throw new Error('Start must be less than or equal to end');
+    }
+  }
+
+  private supportedTypes(): Function[] {
+    return [
+      (value: rangeType) => typeof value === 'number',
+      (value: rangeType) => value instanceof Date,
+    ];
+  }
+
+  private toArrayNumber(): rangeType[] {
+    const array: rangeType[] = [];
+    const start = this.start as unknown as number;
+    const end = this.end as unknown as number;
+
+    for (let i = start; i <= end; i++) {
+      array.push(i as unknown as rangeType);
+    }
+    return array;
+  }
+
+  private toArrayDate(): rangeType[] {
+    const start = (this.start as unknown as Date).getTime();
+    const end = (this.end as unknown as Date).getTime();
+
+    const array: rangeType[] = [];
+
+    for (let i = start; i <= end; i += 1) {
+      array.push(new Date(i) as unknown as rangeType);
+    }
+
+    return array;
   }
 }
