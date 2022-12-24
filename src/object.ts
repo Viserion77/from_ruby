@@ -8,6 +8,8 @@ const isEmpty = (value: Object) => {
   return isNullOrUndefined(value) || Object.keys(value).length === 0;
 };
 
+const wrapWithArray = (value: any) => [value];
+
 const setBackgroundCompatibility = () => {
   Object.prototype.isEmpty = function () {
     return isEmpty(this);
@@ -32,10 +34,15 @@ const setBackgroundCompatibility = () => {
   Object.prototype.isNullOrUndefined = function () {
     return isNullOrUndefined(this);
   };
+
+  Object.prototype.wrapWithArray = function () {
+    return wrapWithArray(this);
+  };
 };
 
 export default {
   isEmpty,
+  wrapWithArray,
   setBackgroundCompatibility,
   isNull,
   isUndefined,

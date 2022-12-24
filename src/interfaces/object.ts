@@ -5,4 +5,5 @@ interface Object {
   isNull(): boolean;
   isUndefined(): boolean;
   isNullOrUndefined(): boolean;
+  wrapWithArray(): any[];
 }
