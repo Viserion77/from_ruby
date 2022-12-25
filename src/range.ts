@@ -15,6 +15,10 @@ export default class Range<rangeType> {
     return this.start <= value && value <= this.end;
   }
 
+  public includes(value: rangeType): boolean {
+    return this.contains(value);
+  }
+
   public toArray(): rangeType[] {
     if (this.rangeArray.length) return this.rangeArray;
 
@@ -25,6 +29,10 @@ export default class Range<rangeType> {
     }
 
     return this.rangeArray;
+  }
+
+  public entries(): rangeType[] {
+    return this.toArray();
   }
 
   public toString(): string {
